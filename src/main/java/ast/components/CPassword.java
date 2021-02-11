@@ -202,7 +202,7 @@ public class CPassword implements Component {
 			JPanelWithValue panel, JToggleButton showButton) {
 		JPanel passPanel = new JPanel(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		passPanel.setPreferredSize(new Dimension(326, 22));
+		passPanel.setPreferredSize(new Dimension(346, 22));
 		gbc.anchor = GridBagConstraints.WEST;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 1.0;
