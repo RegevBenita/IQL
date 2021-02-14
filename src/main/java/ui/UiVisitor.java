@@ -10,8 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-import java.util.stream.Collectors;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
@@ -30,11 +28,6 @@ public abstract class UiVisitor implements Visitor {
 	
 	
 	protected abstract void constructDialog(JFrame frame, List<JPanelContainer> panels, String desc);
-	
-	protected void commitData(List<Map<String, String>> res){
-		res=res.stream().map(m->new HashMap<>(m)).collect(Collectors.toList());
-	    data.complete(res);  
-	}
 	
 	@Override
 	public CompletableFuture<List<Map<String, String>>> getData() {

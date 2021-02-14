@@ -125,7 +125,7 @@ public class PagesVisitor extends UiVisitor {
 		    public void windowClosed(WindowEvent e) {
 				results.clear();
 				results.add(getEmptyEntries(panels));
-				commitData(results);
+				getData().complete(results);
 				frame.dispose();
 		    }
 		});
@@ -163,15 +163,13 @@ public class PagesVisitor extends UiVisitor {
 		});
 		
 		addButton.addActionListener(e -> {
-			if(totalPages <= maxEntries)
-				return;
 			var saved = saveAsMap(panels);
 			if(saved==null)
 				return;
 			updateDataList(results, saved, currentPage -1, true);
 			updateUiFields(panels, new HashMap<String, String>(), true);
 			totalPages++;
-			if(totalPages <= maxEntries)
+			if(totalPages == maxEntries)
 				addButton.setEnabled(false);
 			deleteButton.setEnabled(true);
 			if(totalPages > 1) 
@@ -198,7 +196,7 @@ public class PagesVisitor extends UiVisitor {
 		cancelButton.addActionListener(e-> {
 			results.clear();
 			results.add(getEmptyEntries(panels));
-			commitData(results);
+			getData().complete(results);
 			frame.dispose();
 		});
 		
@@ -214,7 +212,7 @@ public class PagesVisitor extends UiVisitor {
 			if(saved==null) 
 				return;
 			updateDataList(results, saved, currentPage -1, false);
-			commitData(results);
+			getData().complete(results);
 			frame.dispose();
 		});
 				

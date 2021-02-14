@@ -93,23 +93,24 @@ public class SingleVisitor extends UiVisitor {
 		    public void windowClosed(WindowEvent e) {
 				results.clear();
 				results.add(getEmptyEntries(panels));
-				commitData(results);
+				getData().complete(results);  
 				frame.dispose();
 		    }
 		});
 		cancelButton.addActionListener(e-> {
 			results.clear();
 			results.add(getEmptyEntries(panels));
-			commitData(results);
+			getData().complete(results);
 			frame.dispose();
 		});
 		approveButton.addActionListener(e->{
 			var saved = saveAsMap(panels);
 			if(saved!=null) {
 				results.add(saved);
-				commitData(results);
+				getData().complete(results);
 				frame.dispose();
 			}});
+		
 		gbc.gridy++;
 		gbc.anchor = GridBagConstraints.CENTER;
 		frame.add(buttonsPanel, gbc);

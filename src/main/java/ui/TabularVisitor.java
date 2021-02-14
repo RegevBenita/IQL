@@ -169,7 +169,7 @@ public class TabularVisitor extends UiVisitor {
 		    public void windowClosed(WindowEvent e) {
 				results.clear();
 				results.add(getEmptyEntries(panels));
-				commitData(results);
+				getData().complete(results);
 				frame.dispose();
 		    }
 		});
@@ -186,7 +186,7 @@ public class TabularVisitor extends UiVisitor {
 		cancelButton.addActionListener(e-> {
 			results.clear();
 			results.add(getEmptyEntries(panels));
-			commitData(results);
+			getData().complete(results);
 			frame.dispose();
 		});
 		
@@ -201,7 +201,7 @@ public class TabularVisitor extends UiVisitor {
 			List<Map<String, String>> res = new ArrayList<>();
 			var haveError = updateData(fieldsContainer.getComponents(), res);
 			if(!haveError) {
-				commitData(res);
+				getData().complete(res);
 				frame.dispose();
 			}});
 		
