@@ -167,6 +167,8 @@ public class TabularVisitor extends UiVisitor {
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 		    public void windowClosed(WindowEvent e) {
+				if(getData().isDone())
+					return;
 				results.clear();
 				results.add(getEmptyEntries(panels));
 				getData().complete(results);
